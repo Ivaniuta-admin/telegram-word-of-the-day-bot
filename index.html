@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Woord van de dag — Telegram-бот для мовного курсу</title>
+<meta name="description" content="Telegram-бот: слово дня й нагадування про уроки для кількох груп мовного курсу. Python, GitHub Actions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Manrope,system-ui,sans-serif;background:#FFF8EE;color:#2A1F14;min-height:100vh;display:flex;align-items:center}
+.wrap{max-width:1360px;margin:0 auto;padding:56px 40px;display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:center;width:100%}
+.tag{display:inline-flex;gap:8px;align-items:center;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#C2410C}
+.dot{width:9px;height:9px;border-radius:50%;background:#F97316}
+h1{font-size:clamp(36px,4.4vw,58px);line-height:1.06;font-weight:800;letter-spacing:-.02em;margin-top:18px}
+.lead{font-size:20px;line-height:1.55;margin-top:20px;color:#6B5B4A;max-width:600px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.chip{font-size:15px;font-weight:700;padding:9px 15px;border-radius:999px;background:#FDE7D2;color:#9A3412}
+.stats{display:flex;gap:40px;margin-top:36px}
+.stats b{display:block;font-size:44px;font-weight:800;color:#C2410C;line-height:1}
+.stats span{font-size:16px;color:#6B5B4A}
+.btn{display:inline-flex;align-items:center;gap:10px;margin-top:36px;background:#2A1F14;color:#fff;text-decoration:none;font-weight:700;padding:14px 22px;border-radius:12px}
+.chat{background:#E5DDD5;border-radius:28px;padding:24px;box-shadow:0 30px 80px -24px rgba(0,0,0,.35)}
+.audio{background:#fff;border-radius:18px 18px 6px 6px;padding:14px 18px;display:flex;align-items:center;gap:14px;margin-bottom:4px}
+.play{width:44px;height:44px;border-radius:50%;background:#F97316;display:grid;place-items:center;color:#fff;font-size:18px}
+.msg{background:#fff;border-radius:6px 6px 18px 6px;padding:18px 20px;font-size:19px;line-height:1.5;white-space:pre-line;color:#1F2937}
+.note{text-align:center;font-size:14px;color:#7A6E62;margin-top:12px}
+@media (max-width:900px){.wrap{grid-template-columns:1fr;gap:40px;padding:40px 20px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <section>
+    <div class="tag"><span class="dot"></span>Telegram-бот · автоматизація</div>
+    <h1>«Woord van de dag»<br>розсилка для мовного курсу</h1>
+    <p class="lead">У дні занять бот надсилає в групи курсу нідерландської слово з перекладом, прикладом і аудіо вимови, а перед уроками — нагадування з посиланням на зустріч. Без сервера, на GitHub Actions.</p>
+    <div class="chips"><span class="chip">Python</span><span class="chip">GitHub Actions</span><span class="chip">cron-job.org</span><span class="chip">Telegram Bot API</span><span class="chip">CSV</span></div>
+    <div class="stats">
+      <div><b>7</b><span>груп A1/A2</span></div>
+      <div><b>5</b><span>запусків на день</span></div>
+      <div><b>0</b><span>серверів</span></div>
+    </div>
+    <a class="btn" href="https://github.com/Ivaniuta-admin/telegram-word-of-the-day-bot">Код на GitHub →</a>
+  </section>
+  <section class="chat">
+    <div class="audio"><div class="play">▶</div><div><div style="font-weight:700">les1_01_fiets.mp3</div><div style="font-size:14px;color:#6B7280">аудіо вимови</div></div></div>
+    <div class="msg">🌷 Woord van de dag
+
+🇳🇱 Слово:
+de fiets
+
+🇺🇦 Переклад:
+велосипед
+
+💬 Приклад:
+Ik ga met de fiets naar mijn werk.
+
+📚 Урок: Les 1 — Kennismaken
+
+🔊 Вимова — слухай аудіо вище 👆</div>
+    <div class="note">Повідомлення за реальним шаблоном бота</div>
+  </section>
+</main>
+</body>
+</html>
