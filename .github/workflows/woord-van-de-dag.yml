@@ -1,0 +1,48 @@
+name: Woord van de dag
+
+on:
+  # Розклад GitHub (`schedule:`) прибрано — на практиці він ненадійний і
+  # запускається із затримкою в кілька годин або взагалі не запускається.
+  # Замість нього зовнішній сервіс (cron-job.org) стукає сюди через
+  # workflow_dispatch у 5 точних моментів — такий запуск GitHub виконує
+  # одразу, без черги "за розкладом".
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Надіслати зараз, ігноруючи дату старту курсу і день тижня (для тестування)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write  # потрібно, щоб бот міг закомітити оновлені state-файли
+
+jobs:
+  send-word:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Send daily updates for all courses
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_GROUP1_CHAT_ID: ${{ secrets.TELEGRAM_GROUP1_CHAT_ID }}
+          TELEGRAM_GROUP2_CHAT_ID: ${{ secrets.TELEGRAM_GROUP2_CHAT_ID }}
+          FORCE_SEND: ${{ inputs.force }}
+        run: python run_daily.py
+
+      - name: Commit updated state
+        run: |
+          git config user.name "woord-van-de-dag-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add state*.json
+          git diff --cached --quiet || git commit -m "Update state: next word"
+          git push
